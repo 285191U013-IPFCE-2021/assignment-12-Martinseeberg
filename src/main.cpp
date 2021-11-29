@@ -1,4 +1,3 @@
-
 #include <chrono>
 #include <thread>
 #include <assert.h>
@@ -47,13 +46,13 @@ bool Time::tick()
 
     if (time > alarm)
     {
-        alarmHasBeenSet = true;
+        alarmHasBeenSet = true; // If alarm is higher than time, it should be reset.
 
-        alarm = 0;
+        alarm = 0; // resetting to 0
     }
     else
     {
-        alarmHasBeenSet = false;
+        alarmHasBeenSet = false; // Otherwise false.
     }
 
     return alarmHasBeenSet;
@@ -93,12 +92,12 @@ int main(int argc, char **argv)
 {
     bool temp; // Storing boolean of tick, where it gets the value true or false
     Time t1(20);
-    t1.setalarm(40);
+    t1.setalarm(40);                   // Setting alarm to 40, so it should not be set in the if else statement.
     t1.tick();                         // Incrementing time by 1 so time = 21
     temp = t1.checkAndUpdateAlarm(10); // Adding 10s so time = 31s, and setting temp = to the boolean.
     t1.print();                        // 31s
 
-    if (temp == true) // Checking if temp boolean is true or false and printing accordently.
+    if (temp == true) // Checking if temp boolean is true or false and printing accordently. Here i set it to 40, so the alarm will not be set.
         cout << "The alarm has been set \n";
     else
         cout << "The alarm has not been set \n";
